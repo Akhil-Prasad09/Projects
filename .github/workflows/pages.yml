@@ -1,0 +1,42 @@
+name: Deploy Green Basket to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: ["Green Basket/**", .github/workflows/pages.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    defaults:
+      run:
+        working-directory: Green Basket
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: Green Basket/package-lock.json
+      - run: npm ci
+      - run: npm run build
+        env:
+          CI: false   # lint warnings (placeholder footer links) shouldn't block the build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: Green Basket/build
+      - id: deployment
+        uses: actions/deploy-pages@v4

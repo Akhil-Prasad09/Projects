@@ -242,8 +242,8 @@ function AdminPanel() {
   ]);
 
   const [pendingOrders, setPendingOrders] = useState([
-    { id: '#ORD-2001', customer: 'John Smith', product: 'Hand Block Printed Scarf', amount: '₹2,598', status: 'pending' },
-    { id: '#ORD-2002', customer: 'Emma Wilson', product: 'Terracotta Planter Set', amount: '₹1,499', status: 'pending' }
+    { id: '#ORD-2001', customer: 'Rohan', product: 'Hand Block Printed Scarf', amount: '₹2,598', status: 'pending' },
+    { id: '#ORD-2002', customer: 'Emma', product: 'Terracotta Planter Set', amount: '₹1,499', status: 'pending' }
   ]);
 
   const [notification, setNotification] = useState(null);

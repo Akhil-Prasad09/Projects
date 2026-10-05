@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24   # same major as the lockfile was generated with
           cache: npm
           cache-dependency-path: Green Basket/package-lock.json
       - run: npm ci
